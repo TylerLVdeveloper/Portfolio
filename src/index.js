@@ -2,47 +2,43 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+// Project Demo Videos
 import PathFindingVisualizerMP4 from "./ProjectVideos/PathFindingVisualizer.mp4";
 import SortingVisualizerMP4 from "./ProjectVideos/SortingVisualizer.mp4";
+
+// Project Screenshots
 import PathFindingVisualizerIMG from "./ProjectImages/PathFindingVisualizer.jpeg";
-// import SortingVisualizerIMG from "./ProjectImages/SortingVisualizer.jpeg";
+import SortingVisualizerIMG from "./ProjectImages/SortingVisualizer.jpeg";
 
 const projectsArray = [
   {
     name: "PathFinding Visualizer",
     image: PathFindingVisualizerIMG,
     video: PathFindingVisualizerMP4,
-    description: "Description example ...",
-    githubLink: "#",
-    demoLink: "#",
+    description: "Description example 1",
+    // githubLink: "#",
+    // demoLink: "#",
+  },
+  {
+    name: "Sorting Visualizer",
+    image: SortingVisualizerIMG,
+    video: SortingVisualizerMP4,
+    description: "Description example 2",
+    // githubLink: "#",
+    // demoLink: "#",
   },
 ];
 
 class ProjectImage extends React.Component {
   render() {
-    return <img className="project_image" src={this.props.imgName} />;
+    return <img className="project_image" src={this.props.imgName} alt="" />;
   }
 }
 
 class ProjectCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { expanded: false };
-
-    this.viewProject = this.viewProject.bind(this);
-  }
-
-  viewProject(e) {
-    this.setState((prevState) => ({ expanded: !prevState.expanded }));
-  }
-
   render() {
     return (
-      <div
-        className={
-          this.state.expanded ? "project_card.expanded" : "project_card"
-        }
-      >
+      <div className="project_card" onClick={this.props.onClick}>
         <div className="project_heading">{this.props.heading}</div>
         <ProjectImage imgName={this.props.imgName} />
         <div className="project_card_overlay"></div>
@@ -55,24 +51,16 @@ class ProjectsContainer extends React.Component {
   render() {
     return (
       <div className="projects_container">
-        {/* will want to store projects in an array to be looped over instead of hardcoding each project card */}
-        <ProjectCard
-          imgName={PathFindingVisualizerIMG}
-          heading="Pathfinding Visualizer"
-        />
-        <ProjectCard
-          imgName={PathFindingVisualizerIMG}
-          heading="Pathfinding Visualizer"
-        />
-        <ProjectCard
-          imgName={PathFindingVisualizerIMG}
-          heading="Pathfinding Visualizer"
-        />
-
-        {/* <ProjectCard
-          imgName={SortingVisualizerIMG}
-          heading="Sorting Visualizer"
-        /> */}
+        {projectsArray.map((proj, i) => {
+          return (
+            <ProjectCard
+              imgName={proj.image}
+              heading={proj.name}
+              key={i}
+              onClick={() => this.props.onClick(i)}
+            />
+          );
+        })}
       </div>
     );
   }
@@ -81,9 +69,9 @@ class ProjectsContainer extends React.Component {
 class ProjectVideo extends React.Component {
   render() {
     return (
-      <div id="video_container">
+      <div id="video_container" key={this.props.projectKey}>
         <video autoPlay muted loop className="project_video">
-          <source src={this.props.videoName} type="video/mp4" />
+          <source src={this.props.video} type="video/mp4" />
         </video>
       </div>
     );
@@ -94,35 +82,28 @@ class ProjectDetails extends React.Component {
   render() {
     return (
       <div id="project_details">
-        <h1 className="project_title">Pathfinding Visualizer</h1>
-        <p className="project_description">
-          Pathfinding visualizer that allows the user to select a start point,
-          end point, and obstruction point(s), then finds the shortest path
-          using the A* algorithm.
-        </p>
-        <a href="#" className="project_link">
+        <h1 className="project_title">{this.props.title}</h1>
+        <p className="project_description">{this.props.desc}</p>
+        {/* <a href="#" className="project_link">
           GitHub Repository
         </a>
         <a href="#" className="project_link">
           Go to project
-        </a>
+        </a> */}
       </div>
     );
   }
 }
 
 class ProjectViewer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      projectBeingViewed: null,
-    };
-  }
   render() {
     return (
       <div id="project_viewer">
-        <ProjectDetails />
-        <ProjectVideo videoName={this.props.videoName} />
+        <ProjectDetails title={this.props.title} desc={this.props.desc} />
+        <ProjectVideo
+          video={this.props.video}
+          projectKey={this.props.projectKey}
+        />
       </div>
     );
   }
@@ -139,18 +120,41 @@ class ContentContainer extends React.Component {
     return (
       <div id="content_container">
         <AboutMeViewer />
-        <ProjectViewer videoName={SortingVisualizerMP4} />
+        <ProjectViewer
+          projectKey={this.props.projectKey}
+          video={this.props.currentProject.video}
+          title={this.props.currentProject.name}
+          desc={this.props.currentProject.description}
+        />
       </div>
     );
   }
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedProject: projectsArray[0],
+    };
+    this.projectClicked = this.projectClicked.bind(this);
+  }
+
+  projectClicked(i) {
+    this.setState({
+      selectedProject: projectsArray[i],
+      projectKey: i, // This is passed down to video component and serves as a key attribute for the div it's contained in to trigger a re-render and change videos
+    });
+  }
+
   render() {
     return (
       <div>
-        <ContentContainer />
-        <ProjectsContainer />
+        <ContentContainer
+          currentProject={this.state.selectedProject}
+          projectKey={this.state.projectKey}
+        />
+        <ProjectsContainer onClick={(i) => this.projectClicked(i)} />
       </div>
     );
   }
