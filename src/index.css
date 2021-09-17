@@ -5,6 +5,37 @@ body {
   background-color: none;
 }
 
+/* .fade-appear {
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 1s linear;
+} */
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.fade-exit-done {
+  opacity: 0;
+}
+
 #content_container {
   position: relative;
   width: 100%;

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
 
 // Project Demo Videos
 import PathFindingVisualizerMP4 from "./ProjectVideos/PathFindingVisualizer.mp4";
@@ -69,11 +70,23 @@ class ProjectsContainer extends React.Component {
 class ProjectVideo extends React.Component {
   render() {
     return (
-      <div id="video_container" key={this.props.projectKey}>
-        <video autoPlay muted loop className="project_video">
-          <source src={this.props.video} type="video/mp4" />
-        </video>
-      </div>
+      <TransitionGroup id="video_container">
+        <CSSTransition
+          key={this.props.projectKey}
+          timeout={200}
+          classNames="fade"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            className="project_video"
+            key={this.props.projectKey}
+          >
+            <source src={this.props.video} type="video/mp4" />
+          </video>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }
@@ -83,6 +96,7 @@ class ProjectDetails extends React.Component {
     return (
       <div id="project_details">
         <h1 className="project_title">{this.props.title}</h1>
+
         <p className="project_description">{this.props.desc}</p>
         {/* <a href="#" className="project_link">
           GitHub Repository
@@ -100,6 +114,7 @@ class ProjectViewer extends React.Component {
     return (
       <div id="project_viewer">
         <ProjectDetails title={this.props.title} desc={this.props.desc} />
+
         <ProjectVideo
           video={this.props.video}
           projectKey={this.props.projectKey}
@@ -120,6 +135,7 @@ class ContentContainer extends React.Component {
     return (
       <div id="content_container">
         <AboutMeViewer />
+
         <ProjectViewer
           projectKey={this.props.projectKey}
           video={this.props.currentProject.video}
@@ -154,6 +170,7 @@ class App extends React.Component {
           currentProject={this.state.selectedProject}
           projectKey={this.state.projectKey}
         />
+
         <ProjectsContainer onClick={(i) => this.projectClicked(i)} />
       </div>
     );
