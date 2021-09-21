@@ -39,7 +39,14 @@ class ProjectImage extends React.Component {
 class ProjectCard extends React.Component {
   render() {
     return (
-      <div className="project_card" onClick={this.props.onClick}>
+      <div
+        className={
+          this.props.project === this.props.currentProject
+            ? "highlighted project_card"
+            : "project_card"
+        }
+        onClick={this.props.onClick}
+      >
         <div className="project_heading">{this.props.heading}</div>
         <ProjectImage imgName={this.props.imgName} />
         <div className="project_card_overlay"></div>
@@ -55,6 +62,8 @@ class ProjectsContainer extends React.Component {
         {projectsArray.map((proj, i) => {
           return (
             <ProjectCard
+              currentProject={this.props.currentProject}
+              project={proj}
               imgName={proj.image}
               heading={proj.name}
               key={i}
@@ -73,7 +82,7 @@ class ProjectVideo extends React.Component {
       <TransitionGroup id="video_container">
         <CSSTransition
           key={this.props.projectKey}
-          timeout={200}
+          timeout={1000}
           classNames="fade"
         >
           <video
@@ -94,17 +103,27 @@ class ProjectVideo extends React.Component {
 class ProjectDetails extends React.Component {
   render() {
     return (
-      <div id="project_details">
-        <h1 className="project_title">{this.props.title}</h1>
+      <TransitionGroup className="project_details">
+        <CSSTransition
+          key={this.props.projectKey}
+          timeout={1000}
+          classNames="fade"
+        >
+          <div>
+            <h1 className="project_title" key={this.props.projectKey}>
+              {this.props.title}
+            </h1>
 
-        <p className="project_description">{this.props.desc}</p>
+            <p className="project_description">{this.props.desc}</p>
+          </div>
+        </CSSTransition>
         {/* <a href="#" className="project_link">
           GitHub Repository
         </a>
         <a href="#" className="project_link">
           Go to project
         </a> */}
-      </div>
+      </TransitionGroup>
     );
   }
 }
@@ -113,7 +132,11 @@ class ProjectViewer extends React.Component {
   render() {
     return (
       <div id="project_viewer">
-        <ProjectDetails title={this.props.title} desc={this.props.desc} />
+        <ProjectDetails
+          title={this.props.title}
+          desc={this.props.desc}
+          projectKey={this.props.projectKey}
+        />
 
         <ProjectVideo
           video={this.props.video}
@@ -171,7 +194,10 @@ class App extends React.Component {
           projectKey={this.state.projectKey}
         />
 
-        <ProjectsContainer onClick={(i) => this.projectClicked(i)} />
+        <ProjectsContainer
+          currentProject={this.state.selectedProject}
+          onClick={(i) => this.projectClicked(i)}
+        />
       </div>
     );
   }
