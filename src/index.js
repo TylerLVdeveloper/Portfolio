@@ -16,6 +16,9 @@ import CheckersIMG from "./ProjectImages/Checkers.jpeg";
 import SnakeIMG from "./ProjectImages/Snake.jpeg";
 
 import gitHubIcon from "./IconImages/GitHub-icon.png";
+import gitHubIcon2 from "./IconImages/GitHub-icon2.png";
+import gmailIcon from "./IconImages/Gmail_Icon.png";
+import linkedinIcon from "./IconImages/Linkedin_Icon.png";
 
 const projectsArray = [
   {
@@ -131,25 +134,27 @@ class ProjectDetails extends React.Component {
           timeout={1000}
           classNames="fade"
         >
-          <div>
+          <div className="view_project_wrapper">
             <div className="project_title">
               <h1 key={this.props.projectKey}>{this.props.proj.name}</h1>
             </div>
 
             <div className="project_description">
               <p>{this.props.proj.description}</p>
-              <p class="languages">JavaScript | HTML | CSS</p>
+              <p className="languages">JavaScript | HTML | CSS</p>
             </div>
 
-            <div className="gitHub_link">
-              <a href={this.props.proj.githubLink}>
-                <img src={gitHubIcon} width="70px" height="70px" />
-                <h4>Go To Repository</h4>
-              </a>
-            </div>
+            <div id="bottom">
+              <div className="gitHub_link">
+                <a href={this.props.proj.githubLink}>
+                  <img src={gitHubIcon} width="70px" height="70px" />
+                  <h4>Go To Repository</h4>
+                </a>
+              </div>
 
-            <div className="view_project">
-              <a href={this.props.proj.demoLink}>Try it out!</a>
+              <div className="view_project">
+                <a href={this.props.proj.demoLink}>Try it out!</a>
+              </div>
             </div>
           </div>
         </CSSTransition>
@@ -178,7 +183,24 @@ class ProjectViewer extends React.Component {
 
 class AboutMeViewer extends React.Component {
   render() {
-    return <div id="about_me_viewer"></div>;
+    return (
+      <div id="about_me_viewer">
+        <div className="heading">Tyler Dickinson</div>
+        <div className="sub_heading">Front-End Web Development</div>
+        <div className="skills">ReactJS | JavaScript | HTML | CSS</div>
+        <div className="contact_link">
+          <div className="contact_img">
+            <img src={gmailIcon} />
+          </div>
+          <div className="contact_img">
+            <img src={linkedinIcon} />
+          </div>
+          <div className="contact_img">
+            <img src={gitHubIcon2} />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
