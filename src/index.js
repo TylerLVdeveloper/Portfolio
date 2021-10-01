@@ -83,20 +83,34 @@ class ProjectCard extends React.Component {
 class ProjectsContainer extends React.Component {
   render() {
     return (
-      <div className="projects_container">
-        {projectsArray.map((proj, i) => {
-          return (
-            <ProjectCard
-              currentProject={this.props.currentProject}
-              project={proj}
-              imgName={proj.image}
-              heading={proj.name}
-              key={i}
-              onClick={() => this.props.onClick(i)}
-            />
-          );
-        })}
-      </div>
+      <TransitionGroup>
+        <CSSTransition
+          key={this.props.viewKey}
+          timeout={1000}
+          classNames="fade"
+        >
+          <div
+            className={
+              this.props.mobileViewProjects
+                ? "visible projects_container"
+                : "hidden"
+            }
+          >
+            {projectsArray.map((proj, i) => {
+              return (
+                <ProjectCard
+                  currentProject={this.props.currentProject}
+                  project={proj}
+                  imgName={proj.image}
+                  heading={proj.name}
+                  key={i}
+                  onClick={() => this.props.onClick(i)}
+                />
+              );
+            })}
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }
@@ -166,17 +180,31 @@ class ProjectDetails extends React.Component {
 class ProjectViewer extends React.Component {
   render() {
     return (
-      <div id="project_viewer">
-        <ProjectDetails
-          proj={this.props.proj}
-          projectKey={this.props.projectKey}
-        />
+      <TransitionGroup>
+        <CSSTransition
+          key={this.props.viewKey}
+          timeout={1000}
+          classNames="fade"
+        >
+          <div
+            id="project_viewer"
+            className={this.props.mobileViewProjects ? "visible" : "hidden"}
+          >
+            <div className="hide_projects_link" onClick={this.props.onClick}>
+              BACK
+            </div>
+            <ProjectDetails
+              proj={this.props.proj}
+              projectKey={this.props.projectKey}
+            />
 
-        <ProjectVideo
-          video={this.props.proj.video}
-          projectKey={this.props.projectKey}
-        />
-      </div>
+            <ProjectVideo
+              video={this.props.proj.video}
+              projectKey={this.props.projectKey}
+            />
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }
@@ -184,22 +212,36 @@ class ProjectViewer extends React.Component {
 class AboutMeViewer extends React.Component {
   render() {
     return (
-      <div id="about_me_viewer">
-        <div className="heading">Tyler Dickinson</div>
-        <div className="sub_heading">Front-End Web Development</div>
-        <div className="skills">ReactJS | JavaScript | HTML | CSS</div>
-        <div className="contact_link">
-          <div className="contact_img">
-            <img src={gmailIcon} />
+      <TransitionGroup>
+        <CSSTransition
+          key={this.props.viewKey}
+          timeout={1000}
+          classNames="fade"
+        >
+          <div
+            id="about_me_viewer"
+            className={this.props.mobileViewProjects ? "hidden" : "visible"}
+          >
+            <div className="heading">Tyler Dickinson</div>
+            <div className="sub_heading">Front-End Web Development</div>
+            <div className="skills">ReactJS | JavaScript | HTML | CSS</div>
+            <div className="contact_link">
+              <div className="contact_img">
+                <img src={gmailIcon} />
+              </div>
+              <div className="contact_img">
+                <img src={linkedinIcon} />
+              </div>
+              <div className="contact_img">
+                <img src={gitHubIcon2} />
+              </div>
+            </div>
+            <div className="view_projects_link" onClick={this.props.onClick}>
+              View Projects
+            </div>
           </div>
-          <div className="contact_img">
-            <img src={linkedinIcon} />
-          </div>
-          <div className="contact_img">
-            <img src={gitHubIcon2} />
-          </div>
-        </div>
-      </div>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }
@@ -208,11 +250,18 @@ class ContentContainer extends React.Component {
   render() {
     return (
       <div id="content_container">
-        <AboutMeViewer />
+        <AboutMeViewer
+          onClick={this.props.onClick}
+          mobileViewProjects={this.props.mobileViewProjects}
+          viewKey={this.props.viewKey}
+        />
 
         <ProjectViewer
           projectKey={this.props.projectKey}
           proj={this.props.currentProject}
+          mobileViewProjects={this.props.mobileViewProjects}
+          viewKey={this.props.viewKey}
+          onClick={this.props.onClick}
         />
       </div>
     );
@@ -224,8 +273,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedProject: projectsArray[0],
+      mobileViewProjects: false,
+      viewKey: 0,
     };
     this.projectClicked = this.projectClicked.bind(this);
+    this.toggleView = this.toggleView.bind(this);
   }
 
   projectClicked(i) {
@@ -235,17 +287,34 @@ class App extends React.Component {
     });
   }
 
+  toggleView() {
+    this.state.viewKey === 0
+      ? this.setState({
+          mobileViewProjects: true,
+          viewKey: 1,
+        })
+      : this.setState({
+          mobileViewProjects: false,
+          viewKey: 0,
+        });
+  }
+
   render() {
     return (
       <div>
         <ContentContainer
           currentProject={this.state.selectedProject}
           projectKey={this.state.projectKey}
+          onClick={this.toggleView}
+          mobileViewProjects={this.state.mobileViewProjects}
+          viewKey={this.state.viewKey}
         />
 
         <ProjectsContainer
           currentProject={this.state.selectedProject}
+          viewKey={this.state.viewKey}
           onClick={(i) => this.projectClicked(i)}
+          mobileViewProjects={this.state.mobileViewProjects}
         />
       </div>
     );
