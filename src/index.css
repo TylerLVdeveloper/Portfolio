@@ -15,14 +15,11 @@ body {
 
 .fade-enter {
   position: absolute;
-  transform: translateY(500%);
-}
-.fade-enter h1 {
-  text-align: center;
+  transform: translateX(400%);
 }
 
 .fade-enter.fade-enter-active {
-  transform: translateY(0%);
+  transform: translateX(0%);
   transition: transform 0.5s ease-in-out;
 }
 
@@ -56,8 +53,7 @@ body {
   height: 550px;
   padding: 0;
   margin: 0;
-  background-color: rgb(223, 223, 223);
-  /* background: linear-gradient(to bottom, #8d8d8d 0%, #ffffff 100%); */
+  background-color: white;
 }
 
 .heading {
@@ -75,7 +71,7 @@ body {
 
 .skills {
   color: rgb(48, 48, 48);
-  margin-top: 20px;
+  margin-top: 5%;
   font-size: 1em;
   text-align: center;
   text-shadow: 3px 3px 3px rgb(187, 187, 187);
@@ -132,12 +128,10 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  /* background-color: red; */
   color: white;
 }
 
 .project_title {
-  /* background-color: tomato; */
   height: auto;
   width: 95%;
   text-align: center;
@@ -147,7 +141,6 @@ body {
 }
 
 .project_description {
-  /* background-color: gold; */
   height: auto;
   width: 90%;
   font-size: 1em;
@@ -156,15 +149,12 @@ body {
 }
 
 .languages {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 7%;
+  margin-bottom: 7%;
   text-align: center;
 }
 
 #bottom {
-  position: absolute;
-  bottom: 10%;
-  /* background-color: teal; */
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
@@ -186,7 +176,6 @@ body {
   border-radius: 5px;
   font-size: 1.25vw;
   transition: opacity 1s;
-  /* border: 1px solid white; */
 }
 
 .view_project a:hover {
@@ -222,7 +211,6 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  /* background-color: greenyellow; */
 }
 
 .project_video {
@@ -234,7 +222,7 @@ body {
   min-height: 100%;
   height: 100%;
   object-fit: contain;
-  z-index: 2;
+  z-index: 1;
 }
 
 .projects_container {
@@ -242,11 +230,7 @@ body {
   float: left;
   width: 100%;
   height: auto;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  margin: 0;
   background-color: white;
-  z-index: 6;
 }
 
 .project_card {
@@ -257,11 +241,12 @@ body {
   width: 15%;
   height: 120px;
   border-radius: 2px;
-  z-index: 1;
   padding: 0;
+  margin-top: 4%;
   margin-left: 8%;
   opacity: 0.7;
   transition: opacity 0.6s, transform 0.6s, box-shadow 0.6s;
+  z-index: 6;
 }
 
 .project_card:hover {
@@ -284,7 +269,6 @@ body {
   min-height: 100%;
   height: 100%;
   object-fit: contain;
-  z-index: 2;
 }
 
 .project_card_overlay {
@@ -297,7 +281,6 @@ body {
   height: 100%;
   background-color: black;
   opacity: 0.75;
-  z-index: 3;
   border-radius: 2px;
 }
 
@@ -306,7 +289,7 @@ body {
   position: absolute;
   top: 5%;
   color: white;
-  font-size: 20pt;
+  font-size: 1.5em;
   z-index: 5;
   width: 100%;
 }
@@ -338,27 +321,28 @@ body {
     color: white;
     text-align: center;
     display: block;
-    font-size: 4vw;
-    margin-top: 0%;
+    font-size: 0.8em;
+    margin-top: 2%;
   }
 
   #project_viewer {
     position: fixed;
     top: 0;
     width: 100vw;
-    height: 80%;
+    height: 71%;
+    border-radius: 0;
   }
 
   #video_container {
     width: 100vw;
-    height: 40%;
+    height: 33%;
   }
 
   .project_title {
     height: auto;
     width: 95%;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 0.8em;
     padding-left: 2.5%;
     padding-right: 2.5%;
   }
@@ -366,43 +350,43 @@ body {
   .project_description {
     height: auto;
     width: 90%;
-    font-size: 4vw;
+    font-size: 0.75em;
     padding-left: 5%;
     padding-right: 5%;
   }
 
   .languages {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    /* margin-top: 30px;
+    margin-bottom: 5px; */
     text-align: center;
   }
 
   .gitHub_link img {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
   }
 
   .gitHub_link a {
-    font-size: 3.5vw;
+    font-size: 0.6em;
   }
 
   .gitHub_link {
-    height: 110px;
+    height: auto;
   }
 
   .view_project {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 
   .view_project a {
     padding: 10px;
     border-radius: 5px;
-    font-size: 4vw;
+    font-size: 0.6em;
   }
 
   .project_details {
     width: 100vw;
-    height: 60%;
+    height: 50%;
   }
 
   .projects_container {
@@ -410,24 +394,21 @@ body {
     position: fixed;
     bottom: 0;
     width: 100vw;
-    height: 16%;
+    height: 31%;
     overflow-y: auto;
-  }
-
-  #bottom {
-    margin-bottom: -60px;
+    z-index: 7;
   }
 
   .project_card {
     width: 35.5%;
     height: 90px;
     margin-left: 9%;
-    margin-top: 5px;
-    margin-bottom: 30px;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .project_heading {
-    font-size: 4vw;
+    font-size: 1em;
   }
 
   .hidden {

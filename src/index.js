@@ -125,9 +125,9 @@ class ProjectVideo extends React.Component {
           classNames="fade"
         >
           <video
-            autoPlay
+            controls
             muted
-            loop
+            playsInline
             className="project_video"
             key={this.props.projectKey}
           >
@@ -161,7 +161,7 @@ class ProjectDetails extends React.Component {
             <div id="bottom">
               <div className="gitHub_link">
                 <a href={this.props.proj.githubLink}>
-                  <img src={gitHubIcon} width="70px" height="70px" />
+                  <img src={gitHubIcon} width="70px" height="70px" alt="" />
                   <h4>Go To Repository</h4>
                 </a>
               </div>
@@ -227,13 +227,13 @@ class AboutMeViewer extends React.Component {
             <div className="skills">ReactJS | JavaScript | HTML | CSS</div>
             <div className="contact_link">
               <div className="contact_img">
-                <img src={gmailIcon} />
+                <img src={gmailIcon} alt="" />
               </div>
               <div className="contact_img">
-                <img src={linkedinIcon} />
+                <img src={linkedinIcon} alt="" />
               </div>
               <div className="contact_img">
-                <img src={gitHubIcon2} />
+                <img src={gitHubIcon2} alt="" />
               </div>
             </div>
             <div className="view_projects_link" onClick={this.props.onClick}>
