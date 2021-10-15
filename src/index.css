@@ -4,36 +4,36 @@ body {
   font-family: "Josefin Sans", sans-serif;
 }
 
-/* .fade-appear {
+/* .slide-appear {
   opacity: 0;
 }
 
-.fade-appear.fade-appear-active {
+.slide-appear.slide-appear-active {
   opacity: 1;
   transition: opacity 1s linear;
 } */
 
-.fade-enter {
+.slide-enter {
   position: absolute;
   transform: translateX(400%);
 }
 
-.fade-enter.fade-enter-active {
+.slide-enter.slide-enter-active {
   transform: translateX(0%);
   transition: transform 0.5s ease-in-out;
 }
 
-.fade-exit {
+.slide-exit {
   transform: translateY(0%);
   position: absolute;
 }
 
-.fade-exit.fade-exit-active {
+.slide-exit.slide-exit-active {
   transform: translateY(-500%);
   transition: transform 0.5s ease-in-out;
 }
 
-.fade-exit-done {
+.slide-exit-done {
   transform: translateY(-500%);
 }
 

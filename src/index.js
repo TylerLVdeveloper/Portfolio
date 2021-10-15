@@ -41,7 +41,7 @@ const projectsArray = [
     name: "Checkers",
     image: CheckersIMG,
     video: CheckersMP4,
-    description: `Checkers game built w/ JavaScript, (ES6 Classes & Function Expressions), HTML, and CSS.`,
+    description: `Classic Checkers board game designed for 2 player functionality, double-jump movement, "King Me" feature, intuitive user-interface for robust movement selection, and more!`,
     githubLink: "https://github.com/TylerLVdeveloper/game-checkers",
     demoLink: `https://checkers-javascript-project.web.app`,
   },
@@ -49,7 +49,8 @@ const projectsArray = [
     name: "Snake",
     image: SnakeIMG,
     video: SnakeMP4,
-    description: "Description example 4",
+    description:
+      "Dating back to its original design in 1976, the player controls vertical/horizontal movement while avoiding collisions with the outside border or the Snake itself. Each time a food dot is eaten, the Snake grows, increasing the difficulty.",
     githubLink: "https://github.com/TylerLVdeveloper/Game-Snake",
     demoLink: `https://snake-javascript-project.web.app`,
   },
@@ -87,7 +88,7 @@ class ProjectsContainer extends React.Component {
         <CSSTransition
           key={this.props.viewKey}
           timeout={1000}
-          classNames="fade"
+          classNames="slide"
         >
           <div
             className={
@@ -122,7 +123,7 @@ class ProjectVideo extends React.Component {
         <CSSTransition
           key={this.props.projectKey}
           timeout={1000}
-          classNames="fade"
+          classNames="slide"
         >
           <video
             controls
@@ -146,7 +147,7 @@ class ProjectDetails extends React.Component {
         <CSSTransition
           key={this.props.projectKey}
           timeout={1000}
-          classNames="fade"
+          classNames="slide"
         >
           <div className="view_project_wrapper">
             <div className="project_title">
@@ -184,7 +185,7 @@ class ProjectViewer extends React.Component {
         <CSSTransition
           key={this.props.viewKey}
           timeout={1000}
-          classNames="fade"
+          classNames="slide"
         >
           <div
             id="project_viewer"
@@ -216,7 +217,7 @@ class AboutMeViewer extends React.Component {
         <CSSTransition
           key={this.props.viewKey}
           timeout={1000}
-          classNames="fade"
+          classNames="slide"
         >
           <div
             id="about_me_viewer"
@@ -227,13 +228,19 @@ class AboutMeViewer extends React.Component {
             <div className="skills">ReactJS | JavaScript | HTML | CSS</div>
             <div className="contact_link">
               <div className="contact_img">
-                <img src={gmailIcon} alt="" />
+                <a href="mailto:tylerd062292@gmail.com">
+                  <img src={gmailIcon} alt="" />
+                </a>
               </div>
               <div className="contact_img">
-                <img src={linkedinIcon} alt="" />
+                <a href="https://www.linkedin.com/in/tyler-dickinson-288790101/">
+                  <img src={linkedinIcon} alt="" />
+                </a>
               </div>
               <div className="contact_img">
-                <img src={gitHubIcon2} alt="" />
+                <a href="https://github.com/TylerLVdeveloper">
+                  <img src={gitHubIcon2} alt="" />
+                </a>
               </div>
             </div>
             <div className="view_projects_link" onClick={this.props.onClick}>
