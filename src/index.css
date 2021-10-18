@@ -315,6 +315,19 @@ body {
     display: block;
     font-size: 6vw;
     margin-top: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 15px;
+    width: 45vw;
+    height: auto;
+    color: rgb(48, 48, 48);
+  }
+
+  .view_projects_link:active {
+    color: white;
+    background-color: rgb(48, 48, 48);
   }
 
   .hide_projects_link {
@@ -323,6 +336,21 @@ body {
     display: block;
     font-size: 0.8em;
     margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 8px;
+    width: 25vw;
+    height: auto;
+    color: rgb(48, 48, 48);
+    background-color: white;
+    z-index: 1;
+  }
+
+  .hide_projects_link:active {
+    background-color: black;
+    color: white;
   }
 
   #project_viewer {
