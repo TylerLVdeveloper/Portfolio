@@ -3,35 +3,14 @@ import "./index.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
 import projectsArray from "./ProjectData.js";
 
-import gitHubIcon from "./IconImages/GitHub-icon.png";
 import gitHubIcon2 from "./IconImages/GitHub-icon2.png";
 import gmailIcon from "./IconImages/Gmail_Icon.png";
 import linkedinIcon from "./IconImages/Linkedin_Icon.png";
 
-class ProjectImage extends React.Component {
-  render() {
-    return <img className="project_image" src={this.props.imgName} alt="" />;
-  }
-}
-
-class ProjectCard extends React.Component {
-  render() {
-    return (
-      <div
-        className={
-          this.props.project === this.props.currentProject
-            ? "highlighted project_card"
-            : "project_card"
-        }
-        onClick={this.props.onClick}
-      >
-        <div className="project_heading">{this.props.heading}</div>
-        <ProjectImage imgName={this.props.imgName} />
-        <div className="project_card_overlay"></div>
-      </div>
-    );
-  }
-}
+// Components
+import ProjectCard from "./components/ProjectCard.js";
+import ProjectDetails from "./components/ProjectDetails.js";
+import ProjectVideo from "./components/ProjectVideo";
 
 class ProjectsContainer extends React.Component {
   render() {
@@ -61,68 +40,6 @@ class ProjectsContainer extends React.Component {
                 />
               );
             })}
-          </div>
-        </CSSTransition>
-      </TransitionGroup>
-    );
-  }
-}
-
-class ProjectVideo extends React.Component {
-  render() {
-    return (
-      <TransitionGroup id="video_container">
-        <CSSTransition
-          key={this.props.projectKey}
-          timeout={1000}
-          classNames="slide"
-        >
-          <video
-            controls
-            muted
-            playsInline
-            className="project_video"
-            key={this.props.projectKey}
-          >
-            <source src={this.props.video} type="video/mp4" />
-          </video>
-        </CSSTransition>
-      </TransitionGroup>
-    );
-  }
-}
-
-class ProjectDetails extends React.Component {
-  render() {
-    return (
-      <TransitionGroup className="project_details">
-        <CSSTransition
-          key={this.props.projectKey}
-          timeout={1000}
-          classNames="slide"
-        >
-          <div className="view_project_wrapper">
-            <div className="project_title">
-              <h1 key={this.props.projectKey}>{this.props.proj.name}</h1>
-            </div>
-
-            <div className="project_description">
-              <p>{this.props.proj.description}</p>
-              <p className="languages">JavaScript | HTML | CSS</p>
-            </div>
-
-            <div id="bottom">
-              <div className="gitHub_link">
-                <a href={this.props.proj.githubLink}>
-                  <img src={gitHubIcon} width="70px" height="70px" alt="" />
-                  <h4>Go To Repository</h4>
-                </a>
-              </div>
-
-              <div className="view_project">
-                <a href={this.props.proj.demoLink}>Try it out!</a>
-              </div>
-            </div>
           </div>
         </CSSTransition>
       </TransitionGroup>
