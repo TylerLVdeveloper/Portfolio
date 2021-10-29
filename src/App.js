@@ -1,8 +1,13 @@
 import React from "react";
-import "./index.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
+
+// Stylesheets
+import "./index.css";
+
+// Project Data
 import projectsArray from "./ProjectData.js";
 
+// Icon Images
 import gitHubIcon2 from "./IconImages/GitHub-icon2.png";
 import gmailIcon from "./IconImages/Gmail_Icon.png";
 import linkedinIcon from "./IconImages/Linkedin_Icon.png";
@@ -12,40 +17,9 @@ import ProjectCard from "./components/ProjectCard.js";
 import ProjectDetails from "./components/ProjectDetails.js";
 import ProjectVideo from "./components/ProjectVideo";
 
-class ProjectMenu extends React.Component {
-  render() {
-    return (
-      <TransitionGroup>
-        <CSSTransition
-          key={this.props.viewKey}
-          timeout={1000}
-          classNames="slide"
-        >
-          <div
-            className={
-              this.props.mobileViewProjects
-                ? "visible projects_container"
-                : "hidden"
-            }
-          >
-            {projectsArray.map((proj, i) => {
-              return (
-                <ProjectCard
-                  currentProject={this.props.currentProject}
-                  project={proj}
-                  imgName={proj.image}
-                  heading={proj.name}
-                  key={i}
-                  onClick={() => this.props.onClick(i)}
-                />
-              );
-            })}
-          </div>
-        </CSSTransition>
-      </TransitionGroup>
-    );
-  }
-}
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
 class ProjectViewer extends React.Component {
   render() {
@@ -140,6 +114,41 @@ class ContentContainer extends React.Component {
           onClick={this.props.onClick}
         />
       </div>
+    );
+  }
+}
+
+class ProjectMenu extends React.Component {
+  render() {
+    return (
+      <TransitionGroup>
+        <CSSTransition
+          key={this.props.viewKey}
+          timeout={1000}
+          classNames="slide"
+        >
+          <div
+            className={
+              this.props.mobileViewProjects
+                ? "visible projects_container"
+                : "hidden"
+            }
+          >
+            {projectsArray.map((proj, i) => {
+              return (
+                <ProjectCard
+                  currentProject={this.props.currentProject}
+                  project={proj}
+                  imgName={proj.image}
+                  heading={proj.name}
+                  key={i}
+                  onClick={() => this.props.onClick(i)}
+                />
+              );
+            })}
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }
