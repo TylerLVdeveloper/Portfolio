@@ -12,7 +12,7 @@ import ProjectCard from "./components/ProjectCard.js";
 import ProjectDetails from "./components/ProjectDetails.js";
 import ProjectVideo from "./components/ProjectVideo";
 
-class ProjectsContainer extends React.Component {
+class ProjectMenu extends React.Component {
   render() {
     return (
       <TransitionGroup>
@@ -186,7 +186,7 @@ class App extends React.Component {
           viewKey={this.state.viewKey}
         />
 
-        <ProjectsContainer
+        <ProjectMenu
           currentProject={this.state.selectedProject}
           viewKey={this.state.viewKey}
           onClick={(i) => this.projectClicked(i)}
