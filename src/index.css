@@ -37,6 +37,25 @@ body {
   transform: translateY(-500%);
 }
 
+.slideIn-enter {
+  position: absolute;
+  transform: scaleY(0);
+}
+
+.slideIn-enter.slideIn-enter-active {
+  transform: scaleY(1);
+  transition: all 0.5s;
+}
+
+.slideIn-exit {
+  transform: scaleY(1);
+}
+
+.slideIn-exit.slideIn-exit-active {
+  transform: scaleY(0);
+  transition: all 0.5s;
+}
+
 #content_container {
   position: relative;
   float: left;

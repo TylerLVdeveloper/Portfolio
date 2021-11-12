@@ -16,6 +16,7 @@ import linkedinIcon from "./IconImages/Linkedin_Icon.png";
 import ProjectCard from "./components/ProjectCard.js";
 import ProjectDetails from "./components/ProjectDetails.js";
 import ProjectVideo from "./components/ProjectVideo";
+import CountdownTimer from "./components/CountdownTimer.js";
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -86,6 +87,7 @@ class AboutMeViewer extends React.Component {
                 </a>
               </div>
             </div>
+            <CountdownTimer />
             <div className="view_projects_link" onClick={this.props.onClick}>
               View Projects
             </div>
