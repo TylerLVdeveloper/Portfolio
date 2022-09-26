@@ -16,7 +16,7 @@ import linkedinIcon from "./IconImages/Linkedin_Icon.png";
 import ProjectCard from "./components/ProjectCard.js";
 import ProjectDetails from "./components/ProjectDetails.js";
 import ProjectVideo from "./components/ProjectVideo";
-import CountdownTimer from "./components/CountdownTimer.js";
+// import CountdownTimer from "./components/CountdownTimer.js";
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ class AboutMeViewer extends React.Component {
           >
             <div className="heading">Tyler Dickinson</div>
             <div className="sub_heading">Front-End Web Development</div>
-            <div className="skills">ReactJS | JavaScript | HTML | CSS</div>
+            <div className="skills">React JS | JavaScript | HTML | CSS</div>
             <div className="contact_link">
               <div className="contact_img">
                 <a href="mailto:tylerd062292@gmail.com">
@@ -77,17 +77,19 @@ class AboutMeViewer extends React.Component {
                 </a>
               </div>
               <div className="contact_img">
-                <a href="https://www.linkedin.com/in/tyler-dickinson-288790101/">
+                <a
+                  href="https://www.linkedin.com/in/tyler-dickinson-288790101/"
+                  target="_blank"
+                >
                   <img src={linkedinIcon} alt="" />
                 </a>
               </div>
               <div className="contact_img">
-                <a href="https://github.com/TylerLVdeveloper">
+                <a href="https://github.com/TylerLVdeveloper" target="_blank">
                   <img src={gitHubIcon2} alt="" />
                 </a>
               </div>
             </div>
-            <CountdownTimer />
             <div className="view_projects_link" onClick={this.props.onClick}>
               View Projects
             </div>
@@ -123,34 +125,36 @@ class ContentContainer extends React.Component {
 class ProjectMenu extends React.Component {
   render() {
     return (
-      <TransitionGroup>
-        <CSSTransition
-          key={this.props.viewKey}
-          timeout={1000}
-          classNames="slide"
-        >
-          <div
-            className={
-              this.props.mobileViewProjects
-                ? "visible projects_container"
-                : "hidden"
-            }
+      <div>
+        <TransitionGroup>
+          <CSSTransition
+            key={this.props.viewKey}
+            timeout={1000}
+            classNames="slide"
           >
-            {projectsArray.map((proj, i) => {
-              return (
-                <ProjectCard
-                  currentProject={this.props.currentProject}
-                  project={proj}
-                  imgName={proj.image}
-                  heading={proj.name}
-                  key={i}
-                  onClick={() => this.props.onClick(i)}
-                />
-              );
-            })}
-          </div>
-        </CSSTransition>
-      </TransitionGroup>
+            <div
+              className={
+                this.props.mobileViewProjects
+                  ? "visible projects_container"
+                  : "hidden"
+              }
+            >
+              {projectsArray.map((proj, i) => {
+                return (
+                  <ProjectCard
+                    currentProject={this.props.currentProject}
+                    project={proj}
+                    imgName={proj.image}
+                    heading={proj.name}
+                    key={i}
+                    onClick={() => this.props.onClick(i)}
+                  />
+                );
+              })}
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
     );
   }
 }

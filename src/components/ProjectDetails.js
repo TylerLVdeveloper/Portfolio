@@ -18,19 +18,21 @@ class ProjectDetails extends React.Component {
 
             <div className="project_description">
               <p>{this.props.proj.description}</p>
-              <p className="languages">JavaScript | HTML | CSS</p>
+              <p className="languages">{this.props.proj.languages}</p>
             </div>
 
             <div id="bottom">
               <div className="gitHub_link">
-                <a href={this.props.proj.githubLink}>
+                <a href={this.props.proj.githubLink} target="_blank">
                   <img src={gitHubIcon} width="70px" height="70px" alt="" />
                   <h4>Go To Repository</h4>
                 </a>
               </div>
 
               <div className="view_project">
-                <a href={this.props.proj.demoLink}>Try it out!</a>
+                <a href={this.props.proj.demoLink} target="_blank">
+                  Try it out!
+                </a>
               </div>
             </div>
           </div>
